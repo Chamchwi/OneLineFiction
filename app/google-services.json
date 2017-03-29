@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "659806982393",
+    "firebase_url": "https://onelinefiction.firebaseio.com",
+    "project_id": "onelinefiction",
+    "storage_bucket": "onelinefiction.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659806982393:android:e9d31bbf3609e7e9",
+        "android_client_info": {
+          "package_name": "com.dsm.onelinefiction"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659806982393-66u9ps9t7sfukppiht99bncgughtvhvq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAu-XBxDSTaJMq7ZhWXj6AuXTAOD1aEPsU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
