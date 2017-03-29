@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.View;
 
 import java.util.ArrayList;
 
@@ -21,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
 
-        layoutManager = new LinearLayoutManager(this);
+//        layoutManager = new LinearLayoutManager(this);
+        layoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
         dataSet = new ArrayList<>();
@@ -31,5 +34,12 @@ public class MainActivity extends AppCompatActivity {
         dataSet.add(new Item("1", R.mipmap.ic_launcher));
         dataSet.add(new Item("2", R.mipmap.ic_launcher));
         dataSet.add(new Item("3", R.mipmap.ic_launcher));
+
+        recyclerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
     }
 }
