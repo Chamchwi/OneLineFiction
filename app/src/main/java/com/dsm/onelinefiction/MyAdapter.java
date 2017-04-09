@@ -25,25 +25,26 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }
     }
 
-    public MyAdapter (ArrayList<Item> dataSet) {
+    public MyAdapter(ArrayList<Item> dataSet) {
         this.dataSet = dataSet;
     }
+
     @Override
-    public MyAdapter.ViewHolder onCreateViewHolder (ViewGroup parent, int viewType) {
+    public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.card_view, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
+
     @Override
-    public void onBindViewHolder (ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         holder.textView.setText(dataSet.get(position).text);
         holder.imageView.setImageResource(dataSet.get(position).image);
     }
+
     @Override
-    public int getItemCount () {
+    public int getItemCount() {
         return dataSet.size();
     }
-
-
 }
