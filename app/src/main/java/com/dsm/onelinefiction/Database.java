@@ -1,5 +1,7 @@
 package com.dsm.onelinefiction;
 
+import android.util.Log;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -12,22 +14,27 @@ public class Database {
     private DatabaseReference databaseReference;
     private static Database instance;
 
-    public Database() {
+    public Database(String userId) {
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference();
+        databaseReference = firebaseDatabase.getReference(userId);
         databaseReference.addValueEventListener(valueEventListener);
     }
 
-    public static Database getInstance() {
+    public static Database getInstance(String userId) {
         if (instance == null)
-            instance = new Database();
+            instance = new Database(userId);
 
         return instance;
     }
 
-    //새로운 일기 작성
-    public void createNewBook (Book book) {
+    public void checkFirst () {
 
+    }
+    //새로운 일기 작성
+    public void createNewBook (String userId, Page page) {
+        Book book = Book.getInstance();
+        book.addPage(page);
+        databaseReference.setValue(book);
     }
     //기존 일기 내용 수정
     public void modifyBook () {
@@ -41,7 +48,7 @@ public class Database {
     private ValueEventListener valueEventListener = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
-
+            Book book = dataSnapshot.getValue(Book.class);
         }
 
         @Override

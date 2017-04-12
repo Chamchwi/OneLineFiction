@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Item> dataSet;
     private Database database;
     private FloatingActionButton btnAdd;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //data load
-        database = Database.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+        database = Database.getInstance(firebaseAuth.getCurrentUser().getUid());
 
         //view load
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
