@@ -41,7 +41,7 @@ public class EditActivity extends AppCompatActivity {
                 Page page = new Page(edtTitle.getText().toString(), edtContent.getText().toString());
                 database.createNewBook(firebaseAuth.getCurrentUser().getUid(), page);
                 Toast.makeText(EditActivity.this, "의식의 흐름대로 작성한 일기가\n" +
-                        "정상적으로 등록되었습니다." , Toast.LENGTH_SHORT).show();
+                        "정상적으로 등록되었습니다.", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

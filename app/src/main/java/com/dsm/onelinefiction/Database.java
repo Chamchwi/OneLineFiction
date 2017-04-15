@@ -27,21 +27,24 @@ public class Database {
         return instance;
     }
 
-    public void checkFirst () {
+    public void checkFirst() {
 
     }
+
     //새로운 일기 작성
-    public void createNewBook (String userId, Page page) {
+    public void createNewBook(String userId, Page page) {
         Book book = Book.getInstance();
         book.addPage(page);
         databaseReference.setValue(book);
     }
+
     //기존 일기 내용 수정
-    public void modifyBook () {
+    public void modifyBook() {
 
     }
+
     //일기 삭제
-    public void removeBook () {
+    public void removeBook() {
 
     }
 
@@ -49,6 +52,7 @@ public class Database {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             Book book = dataSnapshot.getValue(Book.class);
+            Book.getInstance().pageList = book.pageList;
         }
 
         @Override
