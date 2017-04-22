@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -46,10 +47,13 @@ public class MainActivity extends AppCompatActivity {
         adapter = new MyAdapter(dataSet);
         recyclerView.setAdapter(adapter);
 
+        //뷰 표시
+
         dataSet.add(new Item("1", R.mipmap.ic_launcher));
         dataSet.add(new Item("2", R.mipmap.ic_launcher));
         dataSet.add(new Item("3", R.mipmap.ic_launcher));
         dataSet.add(new Item("4", R.mipmap.ic_launcher));
+        Toast.makeText(this, "Create", Toast.LENGTH_SHORT).show();
 
         btnAdd = (FloatingActionButton) findViewById(R.id.btn_add);
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -58,5 +62,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, EditActivity.class));
             }
         });
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Toast.makeText(this, "Restart", Toast.LENGTH_SHORT).show();
+//        for (int i = 0; i < Book.getInstance().pageList.size(); i++)
+//            dataSet.add(new Item(Book.getInstance().pageList.get(i).page_title, R.mipmap.ic_launcher));
     }
 }

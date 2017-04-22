@@ -16,7 +16,7 @@ public class Book {
     private static Book instance;
 
     public Book() {
-
+        
     }
 
     public void addPage(Page page) {
