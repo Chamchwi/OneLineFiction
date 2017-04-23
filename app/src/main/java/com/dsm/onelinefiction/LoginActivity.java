@@ -83,7 +83,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         authResults.addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
-                FirebaseUser firebaseUser = authResult.getUser();
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 finish();
             }

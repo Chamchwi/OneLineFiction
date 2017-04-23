@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <!-- main content -->
-    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -15,7 +15,17 @@
             android:layout_height="match_parent"
             android:scrollbars="vertical" />
 
+        <ProgressBar
+            android:id="@+id/prg"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <android.support.design.widget.FloatingActionButton
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
             android:id="@+id/btn_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,7 +35,7 @@
             android:src="@android:drawable/ic_menu_edit"
             app:backgroundTint="#2C8B25" />
 
-    </android.support.design.widget.CoordinatorLayout>
+    </RelativeLayout>
 
     <!-- navigation drawer side menu -->
     <ListView

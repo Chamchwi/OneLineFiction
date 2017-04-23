@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Database database;
     private FloatingActionButton btnAdd;
     private FirebaseAuth firebaseAuth;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         //view load
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
+        progressBar = (ProgressBar) findViewById(R.id.prg);
 
 //        layoutManager = new LinearLayoutManager(this);
 //        layoutManager = new GridLayoutManager(this, 3);
@@ -46,13 +49,8 @@ public class MainActivity extends AppCompatActivity {
         dataSet = new ArrayList<>();
         adapter = new MyAdapter(dataSet);
         recyclerView.setAdapter(adapter);
+        database.setMainViewUpdate(adapter, dataSet);
 
-        //뷰 표시
-
-        dataSet.add(new Item("1", R.mipmap.ic_launcher));
-        dataSet.add(new Item("2", R.mipmap.ic_launcher));
-        dataSet.add(new Item("3", R.mipmap.ic_launcher));
-        dataSet.add(new Item("4", R.mipmap.ic_launcher));
         Toast.makeText(this, "Create", Toast.LENGTH_SHORT).show();
 
         btnAdd = (FloatingActionButton) findViewById(R.id.btn_add);
