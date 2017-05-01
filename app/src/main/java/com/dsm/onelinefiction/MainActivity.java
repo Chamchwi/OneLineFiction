@@ -8,6 +8,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -43,15 +45,13 @@ public class MainActivity extends AppCompatActivity {
 
 //        layoutManager = new LinearLayoutManager(this);
 //        layoutManager = new GridLayoutManager(this, 3);
-        layoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
+        layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
         dataSet = new ArrayList<>();
-        adapter = new MyAdapter(dataSet);
+        adapter = new MyAdapter(dataSet, this);
         recyclerView.setAdapter(adapter);
-        database.setMainViewUpdate(adapter, dataSet);
-
-        Toast.makeText(this, "Create", Toast.LENGTH_SHORT).show();
+        database.setMainViewUpdate(adapter, dataSet, progressBar);
 
         btnAdd = (FloatingActionButton) findViewById(R.id.btn_add);
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -65,8 +65,5 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        Toast.makeText(this, "Restart", Toast.LENGTH_SHORT).show();
-//        for (int i = 0; i < Book.getInstance().pageList.size(); i++)
-//            dataSet.add(new Item(Book.getInstance().pageList.get(i).page_title, R.mipmap.ic_launcher));
     }
 }

@@ -1,9 +1,10 @@
 package com.dsm.onelinefiction;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class Page {
+public class Page implements Serializable {
 
     public String page_title;
     public String page_content;

@@ -1,7 +1,8 @@
 package com.dsm.onelinefiction;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,6 +19,7 @@ public class Database {
     private static Database instance;
     private RecyclerView.Adapter adapter;
     private ArrayList<Item> dataSet;
+    private ProgressBar progressBar;
 
     public Database(String userId) {
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -37,26 +39,31 @@ public class Database {
     }
 
     //새로운 일기 작성
-    public void createNewBook(String userId, Page page) {
+    public void createNewBook(Page page) {
         Book book = Book.getInstance();
         book.addPage(page);
         databaseReference.setValue(book);
     }
 
     //기존 일기 내용 수정
-    public void modifyBook() {
-
+    public void modifyBook(Page page, int i) {
+        Book book = Book.getInstance();
+        book.pageList.set(i, page);
+        databaseReference.setValue(book);
     }
 
     //일기 삭제
-    public void removeBook() {
-
+    public void removeBook(Page page) {
+        Book book = Book.getInstance();
+        book.pageList.remove(page);
+        databaseReference.setValue(book);
     }
 
     //메인 액티비티 리사이클러뷰 어댑터
-    public void setMainViewUpdate(RecyclerView.Adapter adapter, ArrayList<Item> dataSet) {
+    public void setMainViewUpdate(RecyclerView.Adapter adapter, ArrayList<Item> dataSet, ProgressBar progressBar) {
         this.adapter = adapter;
         this.dataSet = dataSet;
+        this.progressBar = progressBar;
     }
 
     private ValueEventListener valueEventListener = new ValueEventListener() {
@@ -65,6 +72,8 @@ public class Database {
             Book book = dataSnapshot.getValue(Book.class);
             Book.getInstance().pageList = book.pageList;
 
+            //프로그레스바 중지
+            progressBar.setVisibility(View.INVISIBLE);
             //데이터가 업데이트되면 메인 액티비티에 수정된 내용을 업데이트하여 보여줌
             for (int i = 0; i < dataSet.size(); i++)
                 adapter.notifyItemRemoved(i);

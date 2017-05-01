@@ -1,34 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:id="@+id/cardview"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp">
+    card:cardCornerRadius="5dp">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardview"
+    <!--android:clickable="true"-->
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card:cardCornerRadius="5dp">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/view_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/view_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/view_image"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="fitXY" />
-
-            <TextView
-                android:id="@+id/view_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center|center_vertical"
-                android:padding="10dp" />
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
-
-</RelativeLayout>
+            android:gravity="center|center_vertical"
+            android:padding="10dp" />
+    </LinearLayout>
+</android.support.v7.widget.CardView>
