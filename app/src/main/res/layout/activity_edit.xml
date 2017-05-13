@@ -10,20 +10,66 @@
         android:id="@+id/edt_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="제목 입력" />
+        android:background="#00FF0000"
+        android:hint="제목 입력"
+        android:padding="15dp"
+        android:textSize="20dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#969292" />
 
     <EditText
         android:id="@+id/edt_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="#00FF0000"
         android:gravity="top"
-        android:hint="내용 입력" />
+        android:hint="내용 입력"
+        android:padding="15dp"
+        android:textSize="20dp" />
 
-    <Button
-        android:id="@+id/btn_submit"
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#969292" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="쓰기" />
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
+        android:layout_weight="0.03"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/btn_camera"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@mipmap/ic_camera" />
+
+        <Button
+            android:id="@+id/btn_image"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@mipmap/ic_picture" />
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@mipmap/ic_pen" />
+
+    </LinearLayout>
 
 </LinearLayout>
