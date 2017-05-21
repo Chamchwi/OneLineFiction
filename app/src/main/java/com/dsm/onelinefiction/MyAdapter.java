@@ -43,6 +43,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             Book book = Book.getInstance();
             Intent intent = new Intent(context, ViewActivity.class);
             intent.putExtra("page", book.pageList.get(book.pageList.size() - 1 - getPosition()));
+            intent.putExtra("index", book.pageList.size() - 1 - getPosition());
             context.startActivity(intent);
         }
     }

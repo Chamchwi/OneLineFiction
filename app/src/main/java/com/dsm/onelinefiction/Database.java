@@ -46,16 +46,16 @@ public class Database {
     }
 
     //기존 일기 내용 수정
-    public void modifyBook(Page page, int i) {
+    public void modifyBook(Page page, int index) {
         Book book = Book.getInstance();
-        book.pageList.set(i, page);
+        book.pageList.set(index, page);
         databaseReference.setValue(book);
     }
 
     //일기 삭제
-    public void removeBook(Page page) {
+    public void removeBook(int index) {
         Book book = Book.getInstance();
-        book.pageList.remove(page);
+        book.pageList.remove(index);
         databaseReference.setValue(book);
     }
 

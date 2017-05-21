@@ -3,8 +3,14 @@ package com.dsm.onelinefiction;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.w3c.dom.Text;
 
@@ -12,13 +18,16 @@ public class ViewActivity extends AppCompatActivity {
 
     private Intent intent;
     private Page page;
+    private int index;
 
     private TextView txt_title;
     private TextView txt_content;
     private TextView txt_date_create;
     private TextView txt_date_update;
-    private Button btn_delete;
-    private Button btn_update;
+    private Spinner spn_option;
+
+    private FirebaseAuth firebaseAuth;
+    private Database database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +37,7 @@ public class ViewActivity extends AppCompatActivity {
         //page data load
         intent = getIntent();
         page = (Page) intent.getSerializableExtra("page");
+        index = intent.getIntExtra("index", 0);
 
         //View load
         getSupportActionBar().setTitle(page.page_title);
@@ -37,11 +47,35 @@ public class ViewActivity extends AppCompatActivity {
         txt_content = (TextView) findViewById(R.id.txt_content);
         txt_date_create = (TextView) findViewById(R.id.txt_date_create);
         txt_date_update = (TextView) findViewById(R.id.txt_date_update);
+        spn_option = (Spinner) findViewById(R.id.spn_option);
 
         txt_title.setText(page.page_title);
         txt_content.setText(page.page_content);
         txt_date_create.setText(page.page_date_create);
         txt_date_update.setText(page.page_date_update);
+        spn_option.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 1: //수정
+                        break;
+                    case 2: //삭제
+                        firebaseAuth = FirebaseAuth.getInstance();
+                        database = Database.getInstance(firebaseAuth.getCurrentUser().getUid());
+                        database.removeBook(index);
+                        Toast.makeText(ViewActivity.this, "글을 삭제하였습니다.", Toast.LENGTH_SHORT).show();
+                        finish();
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     @Override
@@ -53,4 +87,6 @@ public class ViewActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }
