@@ -40,7 +40,7 @@ public class ViewActivity extends AppCompatActivity {
         index = intent.getIntExtra("index", 0);
 
         //View load
-        getSupportActionBar().setTitle(page.page_title);
+        getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         txt_title = (TextView) findViewById(R.id.txt_title);
@@ -53,15 +53,23 @@ public class ViewActivity extends AppCompatActivity {
         txt_content.setText(page.page_content);
         txt_date_create.setText(page.page_date_create);
         txt_date_update.setText(page.page_date_update);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        database = Database.getInstance(firebaseAuth.getCurrentUser().getUid());
+
         spn_option.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 1: //수정
+                        Intent intent = new Intent(ViewActivity.this, EditActivity.class);
+                        intent.putExtra("page", page);
+                        intent.putExtra("index", index);
+                        intent.putExtra("isModify", true);
+                        startActivity(intent);
+                        finish();
                         break;
                     case 2: //삭제
-                        firebaseAuth = FirebaseAuth.getInstance();
-                        database = Database.getInstance(firebaseAuth.getCurrentUser().getUid());
                         database.removeBook(index);
                         Toast.makeText(ViewActivity.this, "글을 삭제하였습니다.", Toast.LENGTH_SHORT).show();
                         finish();

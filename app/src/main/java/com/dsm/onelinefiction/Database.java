@@ -3,6 +3,7 @@ package com.dsm.onelinefiction;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -47,9 +48,11 @@ public class Database {
 
     //기존 일기 내용 수정
     public void modifyBook(Page page, int index) {
-        Book book = Book.getInstance();
-        book.pageList.set(index, page);
-        databaseReference.setValue(book);
+        if(index != -1) {
+            Book book = Book.getInstance();
+            book.pageList.set(index, page);
+            databaseReference.setValue(book);
+        }
     }
 
     //일기 삭제

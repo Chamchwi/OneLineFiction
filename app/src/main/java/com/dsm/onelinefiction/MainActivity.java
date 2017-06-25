@@ -60,7 +60,9 @@ public class MainActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, EditActivity.class));
+                Intent intent = new Intent(MainActivity.this, EditActivity.class);
+                intent.putExtra("isModify", false);
+                startActivity(intent);
             }
         });
     }
